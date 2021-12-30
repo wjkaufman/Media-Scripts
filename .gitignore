@@ -1,5 +1,8 @@
 __pycache__
 
 *.JPG
+*.jpeg
 *.MOV
 *.MP4
+*.m4v
+*.PNG
