@@ -1,5 +1,7 @@
 __pycache__
 
+*.DS_Store
+
 *.JPG
 *.jpeg
 *.MOV
