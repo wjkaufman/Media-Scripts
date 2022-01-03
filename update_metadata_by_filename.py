@@ -36,8 +36,6 @@ import pandas as pd
 import subprocess
 # from traceback import print_tb
 
-path = sys.argv[1]
-
 
 def guess_date(filename):
     '''
@@ -240,6 +238,7 @@ def change_metadata(filepath, new_date):
 
 
 if __name__ == '__main__':
+    path = sys.argv[1]
     # change to target directory
     os.chdir(path)
 
@@ -301,23 +300,25 @@ if __name__ == '__main__':
                 # print_tb()
                 failed_dirpaths.append(dirpath)
                 failed_files.append(f)
-
+    
+    now_str = datetime.now().strftime('%Y%m%d%H%M%S')
+    
     updated = pd.DataFrame({
         'filepath': updated_filepaths,
         'old_metadata': updated_old,
         'new_metadata': updated_new
     })
-    updated.to_csv('_updated_metadata.csv', index=False)
+    updated.to_csv(f'{now_str}_updated_metadata.csv', index=False)
     
     failures = pd.DataFrame({
         'dirpath': failed_dirpaths,
         'filename': failed_files
     })
-    failures.to_csv('_failures_update.csv', index=False)
+    failures.to_csv(f'{now_str}_failures_update.csv', index=False)
     
     ignores = pd.DataFrame({
         'filepath': ignored_filepaths
     })
-    ignores.to_csv('_ignored_update.csv', index=False)
+    ignores.to_csv(f'{now_str}_ignored_update.csv', index=False)
 
     print('Done!')
