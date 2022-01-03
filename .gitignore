@@ -1,5 +1,7 @@
 __pycache__
 
+*.txt
+
 *.DS_Store
 
 *.JPG
